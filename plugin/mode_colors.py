@@ -46,8 +46,8 @@ def updateKeyColors(mode):
             print("vim-razer: error: no layout found for " + keyboard.name)
             return 1
     else:
-        print("vim-razer: error: no keyboard found")
-        return 1 
+        #print("vim-razer: error: no keyboard found")
+        return 0 
 
     mat = keyboard.fx.advanced.matrix
     
