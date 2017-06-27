@@ -19,10 +19,14 @@ def updateKeyColors(mode):
     from layout import layouts
 
     from razer.client import DeviceManager
-    print(mode)
+    from razer.client import DaemonNotFound
 
     # Create a DeviceManager. This is used to get specific devices
-    device_manager = DeviceManager()
+    try:
+        device_manager = DeviceManager()
+    except DaemonNotFound: 
+        print("vim-razer: error: razer-daemon not running")
+        return 1
 
     # Disable daemon effect syncing.
     # Without this, the daemon will try to set the lighting effect to every device.
@@ -36,9 +40,14 @@ def updateKeyColors(mode):
 
     # get proper keyboard layout
     if keyboard:
-        keylayout = layouts[keyboard.name]
+        try:
+            keylayout = layouts[keyboard.name]
+        except KeyError:
+            print("vim-razer: error: no layout found for " + keyboard.name)
+            return 1
     else:
-        return 
+        print("vim-razer: error: no keyboard found")
+        return 1 
 
     mat = keyboard.fx.advanced.matrix
     
@@ -57,3 +66,4 @@ def updateKeyColors(mode):
        setBaseColor(colors.GREEN)    
 
     keyboard.fx.advanced.draw()
+    return 0

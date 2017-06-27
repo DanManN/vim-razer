@@ -8,6 +8,12 @@ python3 import sys
 python3 import vim
 python3 sys.path.append(vim.eval('expand("<sfile>:h")'))
 
+" check if razer-daemon is running and valid keyboard exists
+python3 from mode_colors import updateKeyColors
+if py3eval('updateKeyColors("normal")')
+	finish
+end	
+
 " --------------------------------
 "  Function(s)
 " --------------------------------
@@ -41,7 +47,6 @@ EOF
     endif
 endfunction
 
-
 function! SetKeyboardColorVisual()
     set updatetime=0
 
@@ -52,7 +57,6 @@ updateKeyColors("visual")
 EOF
     return ''
 endfunction
-
 
 function! ResetKeyboardColor()
     set updatetime=4000
