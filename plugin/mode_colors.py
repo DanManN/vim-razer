@@ -18,14 +18,15 @@ def updateKeyColors(mode):
 
     from layout import layouts
 
+    from dbus.exceptions import DBusException
     from razer.client import DeviceManager
     from razer.client import DaemonNotFound
 
     # Create a DeviceManager. This is used to get specific devices
     try:
         device_manager = DeviceManager()
-    except DaemonNotFound: 
-        print("vim-razer: error: razer-daemon not running")
+    except (DaemonNotFound, DBusException): 
+        #print("vim-razer: error: razer-daemon not running")
         return 1
 
     # Disable daemon effect syncing.
