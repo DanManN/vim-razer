@@ -16,9 +16,11 @@ Use your plugin manager of choice.
   - Add `Plug 'https://github.com/DanManN/vim-razer'` to .vimrc
   - Run `:PlugInstall`
 
+And for arch users vim-razer is also available as a package: [vim-razer-git](https://aur.archlinux.org/packages/vim-razer-git/)<sup>AUR<sup>
+
 ## Todo
 
 1. Add special key colors
 2. Add macro register key colors
 3. Add more keyboard layouts
-2. Write documentation
+2. Write better documentation
