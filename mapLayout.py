@@ -1,5 +1,4 @@
-import colorsys
-import random
+from pprint import pprint
 
 from razer.client import DeviceManager
 from razer.client import constants as razer_constants
@@ -16,9 +15,9 @@ print()
 device_manager.sync_effects = False
 
 
-dict = {}
 # Set random colors for each zone of each device
 for device in device_manager.devices:
+    dict = {}
     rows, cols = device.fx.advanced.rows, device.fx.advanced.cols
     print(str(rows) + ", " + str(cols))
     for row in range(rows):
@@ -31,6 +30,6 @@ for device in device_manager.devices:
                 dict[name] = (row,col)
             device.fx.advanced.matrix[row, col] = (0,0,0)
 
-
-print(dict)
+    print(device.name + ":")
+    pprint(dict)
 

@@ -1,5 +1,5 @@
-layouts = {'Razer Ornata Chroma': 
-    {
+layouts = \
+{'Razer Ornata Chroma': {
         'esc': (0, 1),
         'f1': (0, 3),
         'f2': (0, 4),
@@ -103,7 +103,6 @@ layouts = {'Razer Ornata Chroma':
         'down': (5, 16),
         'right': (5, 17),
         'num_0': (5, 19),
-        'num_dot': (5, 20)
-    }
+        'num_dot': (5, 20)},
 }
 
