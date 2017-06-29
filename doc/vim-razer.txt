@@ -21,8 +21,7 @@ vim update to fix the issue, let go of python2 for vim or port this plugin to ne
 
 3. Usage                                                      *vim-razer-usage*
 
-Just use vim as you would.
-Configuration will hopefully come eventually.
+Open vim and admire the colors.
 
 4. Licence                                                  *vim-razer-licence*
 
