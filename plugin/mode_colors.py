@@ -41,11 +41,11 @@ def updateKeyColors(mode):
 
     # get proper keyboard layout
     if keyboard:
-        try:
+        if keyboard.name in layouts:
             keylayout = layouts[keyboard.name]
-        except KeyError:
-            print("vim-razer: error: no layout found for " + keyboard.name)
-            return 1
+        else:
+            #print("vim-razer: error: no layout found for " + keyboard.name)
+            keylayout = layouts["default"]
     else:
         #print("vim-razer: error: no keyboard found")
         return 0 
