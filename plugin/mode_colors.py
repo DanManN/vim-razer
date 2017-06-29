@@ -72,6 +72,7 @@ def updateKeyColors(mode):
         mat[keylayout['o']] = colors.BLUE
         mat[keylayout['a']] = colors.BLUE
         mat[keylayout['s']] = colors.BLUE
+        mat[keylayout['c']] = colors.BLUE
         mat[keylayout['v']] = colors.ORANGE
         mat[keylayout['h']] = colors.YELLOW
         mat[keylayout['j']] = colors.YELLOW
@@ -85,6 +86,8 @@ def updateKeyColors(mode):
         mat[keylayout['r']] = colors.RED
         mat[keylayout['x']] = colors.RED
         mat[keylayout['u']] = colors.RED
+        mat[keylayout['n']] = colors.RED
+        mat[keylayout['forward_slash']] = colors.RED
         mat[keylayout['left_ctrl']] = colors.RED
         mat[keylayout['left_shift']] = colors.RED
         mat[keylayout['right_ctrl']] = colors.RED
