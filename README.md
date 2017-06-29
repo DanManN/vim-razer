@@ -35,14 +35,16 @@ or for Arch-Linux users vim-razer is also available as an AUR package: [vim-raze
 
 Once everything is installed just open vim and admire the colors.
 
-## Issues
+## Known Issues
 
-Note: certain vim versions with both +python3 and +python (aka python2)
-features enabled might not work either. To get around this either wait for
-vim update to fix the issue, let go of python2 for vim or port this plugin to neovim.
+Certain vim versions with both +python3/dyn and +python/dyn (aka python2)
+features enabled at the same time might not work with this plugin. 
+This is a bug with vim which will hopefully be resolved soon.
+The only workaround I found so far is to disable python2 and hope no other plugins depend on it.
+You could also try to port this plugin to neovim which shouldn't have that issue.
 
 ## Todo
 
 1. Add special key colors
 2. Add macro register key colors
-3. Add more keyboard layouts
+3. Add more keyboard layouts (If you have a keyboard that isn't supported yet run mapLayout.py and send me the output so I can add it. Or send a pull request if you add the layout to the plugin/layout.py file)
