@@ -25,9 +25,17 @@ else:
     if mode == "visual":
         setColor(colors.ORANGE, keys.functionKeys)
         setColor(colors.ORANGE, keys.visualSelection)
-        setColor(colors.BLUE, keys.modkeys)  
+        setColor(colors.RED, keys.modkeys)  
         setColor(colors.ORANGE, keys.movement)
-        setColor(colors.GREEN, keys.register)
+        setColor(colors.GREEN, (*keys.register,'u'))
+        setColor(colors.BLUE, ('c',))
+    elif mode == "macro":
+        macrosSet = ['equals','semicolon','period','forward_slash','minus']
+        for reg in "abcdefghijklmnopqrstuvwxyz1234567890":
+            if not bool(int(vim.eval("RegisterIsEmpty('"+ reg +"')"))):
+                macrosSet.append(reg)
+        setColor(colors.RED, macrosSet)
+        setColor(colors.BLUE, keys.modkeys)  
     else:
         setColor(colors.GREEN, keys.functionKeys)
         setColor(colors.BLUE, keys.toInsert)

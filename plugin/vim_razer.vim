@@ -76,12 +76,25 @@ function! SetKeyboardColorVisual()
 	return ''
 endfunction
 
+function! SetKeyboardColorMacroSelect()
+	" macro select: white and red
+	python3 sys.argv = ["mode_colors.py", "macro"]
+	py3file mode_colors.py
+endfunction
+
 function! ResetKeyboardColor()
-	set updatetime=4000
+	set updatetime=250 
 	python3 sys.argv = ["mode_colors.py", "normal"]
 	py3file mode_colors.py
 endfunction
 
+function! RegisterIsEmpty(reg)
+	if getreg(a:reg) == ""
+		return 1
+	else
+		return 0
+	endif	
+endfunction
 
 " --------------------------------
 "  Expose our commands to the user
@@ -94,6 +107,10 @@ nnoremap <script> V V<SID>SetKeyboardColorVisual
 nnoremap <script> <C-v> <C-v><SID>SetKeyboardColorVisual
 vnoremap <script> <LeftRelease> <LeftRelease><SID>SetKeyboardColorVisual
 inoremap <script> <C-c> <C-c><SID>ResetKeyboardColor()
+nnoremap <expr> <SID>SetKeyboardColorMacroSelect SetKeyboardColorMacroSelect()
+nnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
+vnoremap <expr> <SID>SetKeyboardColorMacroSelect SetKeyboardColorMacroSelect()
+vnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
 
 augroup KeyboardColorSwap
     autocmd!
