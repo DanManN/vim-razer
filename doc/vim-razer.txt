@@ -1,4 +1,5 @@
-*vim-razer.txt* A short multi line description of your plugin
+*vim-razer.txt* vim + Razer RGB keyboards
+*vim-razer*
 
 ===============================================================================
 CONTENTS                                                            *vim-razer*
