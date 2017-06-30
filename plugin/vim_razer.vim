@@ -41,11 +41,11 @@ try:
 			keylayout = layouts["default"]
 	else:
 		#print("vim-razer: error: keyboard not found")
-		vim.eval('let vim_razer_can_run = 0')
+		vim.command('let vim_razer_can_run = 0')
 
 except (DaemonNotFound, DBusException): 
 	#print("vim-razer: error: razer-daemon not running")
-	vim.eval('let vim_razer_can_run = 0')
+	vim.command('let vim_razer_can_run = 0')
 EEOOFF
 
 " finish if no daemon running or valid keyboard doesn't exist
@@ -53,17 +53,18 @@ if !vim_razer_can_run
 	finish
 end	
 
+let s:updateColors = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/mode_colors.py'
 
 function! SetKeyboardColorInsert(mode)
 	" Insert mode: blue
 	if a:mode == "i"
 		python3 sys.argv = ["mode_colors.py", "insert"]
-		py3file mode_colors.py
+		execute 'py3file ' . s:updateColors
 
 	" Replace mode: red
 	elseif a:mode == "r"
 		python3 sys.argv = ["mode_colors.py", "replace"]
-		py3file mode_colors.py
+		execute 'py3file ' . s:updateColors
 	endif
 endfunction
 
@@ -72,20 +73,20 @@ function! SetKeyboardColorVisual()
 
 	" Visual mode: orange
 	python3 sys.argv = ["mode_colors.py", "visual"]
-	py3file mode_colors.py
+	execute 'py3file ' . s:updateColors
 	return ''
 endfunction
 
 function! SetKeyboardColorMacroSelect()
 	" macro select: white and red
 	python3 sys.argv = ["mode_colors.py", "macro"]
-	py3file mode_colors.py
+	execute 'py3file ' . s:updateColors
 endfunction
 
 function! ResetKeyboardColor()
 	set updatetime=250 
 	python3 sys.argv = ["mode_colors.py", "normal"]
-	py3file mode_colors.py
+	execute 'py3file ' . s:updateColors
 endfunction
 
 function! RegisterIsEmpty(reg)
