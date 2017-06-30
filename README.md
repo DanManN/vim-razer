@@ -45,7 +45,8 @@ You could also try to port this plugin to neovim which shouldn't have that issue
 
 ## Todo
 
-Add more keyboard layouts.
+1. Get macro mode to work from visual mode
+2. Add more keyboard layouts.
 You can help me with that by doing one of the following.
 - If you have a keyboard that isn't supported yet run mapLayout.py and send me the output so I can add it. 
 - Send a pull request if you add the layout to the plugin/layout.py file.
