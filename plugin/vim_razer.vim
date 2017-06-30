@@ -109,8 +109,8 @@ vnoremap <script> <LeftRelease> <LeftRelease><SID>SetKeyboardColorVisual
 inoremap <script> <C-c> <C-c><SID>ResetKeyboardColor()
 nnoremap <expr> <SID>SetKeyboardColorMacroSelect SetKeyboardColorMacroSelect()
 nnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
-vnoremap <expr> <SID>SetKeyboardColorMacroSelect SetKeyboardColorMacroSelect()
-vnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
+"vnoremap <expr> <SID>SetKeyboardColorMacroSelect SetKeyboardColorMacroSelect()
+"vnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
 
 augroup KeyboardColorSwap
     autocmd!
