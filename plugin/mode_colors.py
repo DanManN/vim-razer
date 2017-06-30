@@ -71,7 +71,8 @@ def updateKeyColors(mode):
             setColor(colors.ORANGE, keys.functionKeys)
             setColor(colors.ORANGE, keys.visualSelection)
             setColor(colors.BLUE, keys.modkeys)  
-            setColor(colors.GREEN, keys.movement)
+            setColor(colors.ORANGE, keys.movement)
+            setColor(colors.GREEN, keys.register)
         else:
             setColor(colors.GREEN, keys.functionKeys)
             setColor(colors.BLUE, keys.toInsert)

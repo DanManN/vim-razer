@@ -14,6 +14,17 @@ if py3eval('updateKeyColors("normal")')
 	finish
 end	
 
+python3 << EOF
+import sys
+import colors
+import keys
+
+from layout import layouts
+
+from dbus.exceptions import DBusException
+from razer.client import DeviceManager
+from razer.client import DaemonNotFound
+EOF
 " --------------------------------
 "  Function(s)
 " --------------------------------
