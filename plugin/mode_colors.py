@@ -15,6 +15,7 @@
 def updateKeyColors(mode):
     import sys
     import colors
+    import keys
 
     from layout import layouts
 
@@ -53,49 +54,40 @@ def updateKeyColors(mode):
     # get the keyboard color matrix
     mat = keyboard.fx.advanced.matrix
 
-    # helper function to set main color
-    def setBaseColor(color):
-        for key, coord in keylayout.items():
-            mat[coord] = color
+    # helper function to set color of keys
+    def setColor(color, keyset):
+        for key in keyset:
+            mat[keylayout[key]] = color
     
     # set colors depending on mode
     if mode == "insert":
-        setBaseColor(colors.BLUE)
+        setColor(colors.BLUE, keylayout.keys())
+        setColor(colors.RED, keys.modkeys)  
     elif mode == "replace":
-        setBaseColor(colors.RED)
+        setColor(colors.RED, keylayout.keys())
+        setColor(colors.BLUE, keys.modkeys)  
     else:
         if mode == "visual":
-            setBaseColor(colors.ORANGE)
+            setColor(colors.ORANGE, keys.functionKeys)
+            setColor(colors.ORANGE, keys.visualSelection)
+            setColor(colors.BLUE, keys.modkeys)  
+            setColor(color.GREEN, keys.movement)
         else:
-            setBaseColor(colors.GREEN)
-        mat[keylayout['i']] = colors.BLUE
-        mat[keylayout['o']] = colors.BLUE
-        mat[keylayout['a']] = colors.BLUE
-        mat[keylayout['s']] = colors.BLUE
-        mat[keylayout['c']] = colors.BLUE
-        mat[keylayout['v']] = colors.ORANGE
-        mat[keylayout['h']] = colors.YELLOW
-        mat[keylayout['j']] = colors.YELLOW
-        mat[keylayout['k']] = colors.YELLOW
-        mat[keylayout['l']] = colors.YELLOW
-        mat[keylayout['w']] = colors.YELLOW
-        mat[keylayout['b']] = colors.YELLOW
-        mat[keylayout['y']] = colors.RED
-        mat[keylayout['d']] = colors.RED
-        mat[keylayout['p']] = colors.RED
-        mat[keylayout['r']] = colors.RED
-        mat[keylayout['x']] = colors.RED
-        mat[keylayout['u']] = colors.RED
-        mat[keylayout['n']] = colors.RED
-        mat[keylayout['forward_slash']] = colors.RED
-        mat[keylayout['left_ctrl']] = colors.RED
-        mat[keylayout['left_shift']] = colors.RED
-        mat[keylayout['right_ctrl']] = colors.RED
-        mat[keylayout['right_shift']] = colors.RED
+            setColor(colors.GREEN, keys.functionKeys)
+            setColor(colors.BLUE, keys.toInsert)
+            setColor(colors.ORANGE, keys.toVisual)
+            setColor(colors.RED, keys.toReplace)
+            setColor(colors.RED, keys.undoredo)
+            setColor(colors.GREEN, keys.movement)
+            setColor(colors.RED, keys.deletion)
+            setColor(colors.RED, keys.register)
+            setColor(colors.RED, keys.search)
+            setColor(colors.RED, keys.modkeys)  
+            setColor(colors.RED,('semicolon',))
 
 
     # esc always goes to normal mode
-    mat[keylayout['esc']] = colors.GREEN
+    setColor(colors.GREEN,('esc',))
 
     # draw colors on keyboard
     keyboard.fx.advanced.draw()

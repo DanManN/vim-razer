@@ -77,6 +77,7 @@ nnoremap <script> v v<SID>SetKeyboardColorVisual
 nnoremap <script> V V<SID>SetKeyboardColorVisual
 nnoremap <script> <C-v> <C-v><SID>SetKeyboardColorVisual
 vnoremap <script> <LeftDrag> <LeftDrag><SID>SetKeyboardColorVisual
+inoremap <script> <C-c> <C-c><SID>ResetKeyboardColor()
 
 augroup KeyboardColorSwap
     autocmd!
