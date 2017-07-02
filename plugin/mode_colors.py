@@ -15,39 +15,40 @@ def setColor(color, keyset):
 
 # set colors depending on mode
 if mode == "insert":
-    setColor(colors.BLUE, keylayout.keys())
-    setColor(colors.RED, keys.modkeys)  
+    setColor(colors.AQUA, keylayout.keys())
+    setColor(colors.YELLOW, keys.modkeys)  
 elif mode == "replace":
     setColor(colors.RED, keylayout.keys())
-    setColor(colors.BLUE, keys.modkeys)  
+    setColor(colors.YELLOW, keys.modkeys)  
 else:
-    setColor(colors.GREY, keylayout.keys())
+    setColor(colors.BLACK, keylayout.keys())
     if mode == "visual":
         setColor(colors.ORANGE, keys.functionKeys)
         setColor(colors.ORANGE, keys.visualSelection)
-        setColor(colors.RED, keys.modkeys)  
+        setColor(colors.PURPLE, keys.modkeys)  
         setColor(colors.ORANGE, keys.movement)
         setColor(colors.GREEN, (*keys.register,'u'))
-        setColor(colors.BLUE, ('c',))
+        setColor(colors.AQUA, ('c',))
     elif mode == "macro":
-        macrosSet = ['equals','semicolon','period','forward_slash','minus']
+        macrosSet = ['period','forward_slash']
         for reg in "abcdefghijklmnopqrstuvwxyz1234567890":
             if not bool(int(vim.eval("RegisterIsEmpty('"+ reg +"')"))):
                 macrosSet.append(reg)
-        setColor(colors.RED, macrosSet)
-        setColor(colors.BLUE, keys.modkeys)  
+        setColor(colors.PINK, macrosSet)
+        setColor(colors.YELLOW, keys.modkeys)  
+        setColor(colors.BLUE, ('equals','minus','semicolon'))
     else:
         setColor(colors.GREEN, keys.functionKeys)
-        setColor(colors.BLUE, keys.toInsert)
+        setColor(colors.AQUA, keys.toInsert)
         setColor(colors.ORANGE, keys.toVisual)
         setColor(colors.RED, keys.toReplace)
-        setColor(colors.RED, keys.undoredo)
+        setColor(colors.PINK, keys.undoredo)
         setColor(colors.GREEN, keys.movement)
-        setColor(colors.RED, keys.deletion)
-        setColor(colors.RED, keys.register)
-        setColor(colors.RED, keys.search)
-        setColor(colors.RED, keys.modkeys)  
-        setColor(colors.RED,('semicolon',))
+        setColor(colors.PINK, keys.deletion)
+        setColor(colors.PINK, keys.register)
+        setColor(colors.PINK, keys.search)
+        setColor(colors.YELLOW, keys.modkeys)  
+        setColor(colors.PURPLE,('semicolon',))
 
 # esc always goes to normal mode
 setColor(colors.GREEN,('esc',))

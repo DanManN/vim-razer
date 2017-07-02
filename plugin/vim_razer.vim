@@ -7,31 +7,35 @@ let vim_razer_can_run = 1
 
 python3 << EEOOFF
 
-# --------------------------------
-# Add our plugin to the path
-# --------------------------------
-
 import sys
 import vim
+
+# add plugin to path
 sys.path.append(vim.eval('expand("<sfile>:h")'))
 
 import colors
 import keys
-
 from layout import layouts
-
 from dbus.exceptions import DBusException
 from razer.client import DeviceManager
 from razer.client import DaemonNotFound
 
+# keyboard serial number
+serial = ""
+
 try:
 	device_manager = DeviceManager()
 	keyboard = None
+	
+	# get the keyboard
 	for device in device_manager.devices:
 		if (device.type == "keyboard"):
 			keyboard = device
+
 	if keyboard:
 		device_manager.sync_effects = False
+		serial = str(keyboard.serial)
+		keyboard.fx.none()
 
 		# get proper keyboard layout
 		if keyboard.name in layouts:
@@ -39,6 +43,8 @@ try:
 		else:
     			#print("vim-razer: error: no layout found for " + keyboard.name)
 			keylayout = layouts["default"]
+		
+
 	else:
 		#print("vim-razer: error: keyboard not found")
 		vim.command('let vim_razer_can_run = 0')
@@ -48,12 +54,31 @@ except (DaemonNotFound, DBusException):
 	vim.command('let vim_razer_can_run = 0')
 EEOOFF
 
+
 " finish if no daemon running or valid keyboard doesn't exist
 if !vim_razer_can_run
 	finish
 end	
 
+" find path of color script
 let s:updateColors = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/mode_colors.py'
+
+" function to reset keyboard effect if using polychromatic
+function! ResetProfile()
+	python3 << EOF
+try:
+	from polychromatic.preferences import get_device_state
+	from polychromatic import preferences
+	from polychromatic.common import set_lighting_effect
+	effect = get_device_state(serial,"main","effect")
+	params = get_device_state(serial,"main","effect_params")
+	set_lighting_effect(preferences, keyboard, "main", effect, params)
+except ImportError:
+	#print("vim-razer: polychromatic not installed")
+	pass
+EOF
+endfunction
+
 
 function! SetKeyboardColorInsert(mode)
 	" Insert mode: blue
@@ -97,10 +122,7 @@ function! RegisterIsEmpty(reg)
 	endif	
 endfunction
 
-" --------------------------------
-"  Expose our commands to the user
-" --------------------------------
-"command! Example call TemplateExample()
+call ResetKeyboardColor()
 
 vnoremap <expr> <SID>SetKeyboardColorVisual SetKeyboardColorVisual()
 nnoremap <script> v v<SID>SetKeyboardColorVisual
@@ -114,8 +136,9 @@ nnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
 "vnoremap <script> @ <SID>SetKeyboardColorMacroSelect@
 
 augroup KeyboardColorSwap
-    autocmd!
-    autocmd InsertEnter * call SetKeyboardColorInsert(v:insertmode)
-    autocmd InsertLeave * call ResetKeyboardColor()
-    autocmd CursorHold * call ResetKeyboardColor()
+	autocmd!
+	autocmd InsertEnter * call SetKeyboardColorInsert(v:insertmode)
+	autocmd InsertLeave * call ResetKeyboardColor()
+	autocmd CursorHold * call ResetKeyboardColor()
+	autocmd VimLeave * call ResetProfile()
 augroup END
