@@ -1,4 +1,5 @@
-*vim-razer.txt* A short multi line description of your plugin
+*vim-razer.txt* vim + Razer RGB keyboards
+*vim-razer*
 
 ===============================================================================
 CONTENTS                                                            *vim-razer*
@@ -10,14 +11,14 @@ CONTENTS                                                            *vim-razer*
 ===============================================================================
 1. Intro                                                      *vim-razer-intro*
 
-Makes rgb razer keyboards change key colors to complement what you do in vim.
+Makes RGB Razer keyboards change key colors to complement what you do in vim.
 
 2. Requirements                                        *vim-razer-requirements*
 
 Must have vim built with +python3 option and must have razer-drivers installed.
 Note: certain vim versions with both +python3 and +python (aka python2)
 features enabled might not work either. To get around this either wait for
-vim update to fix the issue, let go of python2 for vim or port this plugin to neovim. 
+vim update to fix the issue, let go of python2 for vim, or port this plugin to neovim. 
 
 3. Usage                                                      *vim-razer-usage*
 
