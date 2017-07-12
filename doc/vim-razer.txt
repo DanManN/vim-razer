@@ -2,7 +2,7 @@
 *vim-razer*
 
 ===============================================================================
-CONTENTS                                                            *vim-razer*
+CONTENTS                                                   *vim-razer-contents*
 
     1. Intro ................................................ |vim-razer-intro|
     2. Requirements .................................. |vim-razer-requirements|
