@@ -17,8 +17,8 @@ import colors
 import keys
 from layout import layouts
 from dbus.exceptions import DBusException
-from razer.client import DeviceManager
-from razer.client import DaemonNotFound
+from openrazer.client import DeviceManager
+from openrazer.client import DaemonNotFound
 
 # keyboard serial number
 serial = ""
