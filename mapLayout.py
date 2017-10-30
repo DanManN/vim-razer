@@ -1,7 +1,7 @@
 from pprint import pprint
 
-from razer.client import DeviceManager
-from razer.client import constants as razer_constants
+from openrazer.client import DeviceManager
+from openrazer.client import constants as razer_constants
 
 # Create a DeviceManager. This is used to get specific devices
 device_manager = DeviceManager()
@@ -23,13 +23,12 @@ for device in device_manager.devices:
     for row in range(rows):
         for col in range(cols):
             print("row: " + str(row) + " col: " + str(col))
-            device.fx.advanced.matrix[row, col] = (0,255,0)
+            device.fx.advanced.matrix[row, col] = (0, 255, 0)
             device.fx.advanced.draw()
             name = input("...")
             if (name != "no"):
-                dict[name] = (row,col)
-            device.fx.advanced.matrix[row, col] = (0,0,0)
+                dict[name] = (row, col)
+            device.fx.advanced.matrix[row, col] = (0, 0, 0)
 
     print(device.name + ":")
     pprint(dict)
-
