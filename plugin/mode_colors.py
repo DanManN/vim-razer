@@ -5,8 +5,9 @@ if len(args) > 1:
 
 # helper function to set color of keys
 def setColor(color, keyset):
-    for key in filter(lambda key: key in keylayout, keyset):
-        keyboard.fx.advanced.matrix[keylayout[key]] = color
+    for key in keyset:
+        if key in keylayout:
+            keyboard.fx.advanced.matrix[keylayout[key]] = color
 
 # set colors depending on mode
 if mode == "insert":
