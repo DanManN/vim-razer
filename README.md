@@ -39,9 +39,9 @@ Once everything is installed just open vim and admire the colors.
 
 Certain vim versions with both +python3/dyn and +python/dyn (aka python2)
 features enabled at the same time might not work with this plugin. 
-This is a bug with vim which will hopefully be resolved soon.
+This is due to how vim dynamic python linking works and I can't really change it.
 The only workaround I found so far is to disable python2 and hope no other plugins depend on it.
-You could also try to port this plugin to neovim which shouldn't have that issue.
+Alternatively using neovim works just fine.
 
 ## Todo
 
