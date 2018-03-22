@@ -3,7 +3,7 @@ if !has('python3')
 endif
 
 
-let vim_razer_can_run = 1
+let vim_razer_can_run = 0
 
 python3 << EEOOFF
 
@@ -27,7 +27,7 @@ try:
 
 	device_manager = DeviceManager()
 	keyboard = None
-	
+
 	# get the keyboard
 	for device in device_manager.devices:
 		if (device.type == "keyboard"):
@@ -44,19 +44,20 @@ try:
 		else:
 			#print("vim-razer: error: no layout found for " + keyboard.name)
 			keylayout = layouts["default"]
-		
+
+		vim.command('let vim_razer_can_run = 1')
 
 	else:
 		#print("vim-razer: error: keyboard not found")
-		vim.command('let vim_razer_can_run = 0')
-
-except (DaemonNotFound, DBusException): 
-	#print("vim-razer: error: razer-daemon not running")
-	vim.command('let vim_razer_can_run = 0')
+		pass
 
 except ImportError:
 	#print("vim-razer: error: openrazer not installed")
-	vim.command('let vim_razer_can_run = 0')
+	pass
+
+except (DaemonNotFound, DBusException):
+	#print("vim-razer: error: razer-daemon not running")
+	pass
 
 EEOOFF
 
@@ -64,7 +65,7 @@ EEOOFF
 " finish if no daemon running or valid keyboard doesn't exist
 if !vim_razer_can_run
 	finish
-end	
+end
 
 " find path of color script
 let s:updateColors = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/mode_colors.py'
@@ -115,7 +116,7 @@ function! SetKeyboardColorMacroSelect()
 endfunction
 
 function! ResetKeyboardColor()
-	set updatetime=250 
+	set updatetime=250
 	python3 sys.argv = ["mode_colors.py", "normal"]
 	execute 'py3file ' . s:updateColors
 endfunction
@@ -125,7 +126,7 @@ function! RegisterIsEmpty(reg)
 		return 1
 	else
 		return 0
-	endif	
+	endif
 endfunction
 
 call ResetKeyboardColor()
