@@ -16,14 +16,15 @@ sys.path.append(vim.eval('expand("<sfile>:h")'))
 import colors
 import keys
 from layout import layouts
-from dbus.exceptions import DBusException
-from openrazer.client import DeviceManager
-from openrazer.client import DaemonNotFound
 
 # keyboard serial number
 serial = ""
 
 try:
+	from dbus.exceptions import DBusException
+	from openrazer.client import DeviceManager
+	from openrazer.client import DaemonNotFound
+
 	device_manager = DeviceManager()
 	keyboard = None
 	
@@ -41,7 +42,7 @@ try:
 		if keyboard.name in layouts:
 			keylayout = layouts[keyboard.name]
 		else:
-    			#print("vim-razer: error: no layout found for " + keyboard.name)
+			#print("vim-razer: error: no layout found for " + keyboard.name)
 			keylayout = layouts["default"]
 		
 
@@ -52,6 +53,11 @@ try:
 except (DaemonNotFound, DBusException): 
 	#print("vim-razer: error: razer-daemon not running")
 	vim.command('let vim_razer_can_run = 0')
+
+except ImportError:
+	#print("vim-razer: error: openrazer not installed")
+	vim.command('let vim_razer_can_run = 0')
+
 EEOOFF
 
 

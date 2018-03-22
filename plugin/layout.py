@@ -103,9 +103,10 @@ layouts = \
         'down': (5, 16),
         'right': (5, 17),
         'num_0': (5, 19),
-        'num_dot': (5, 20)},
+        'num_dot': (5, 20)
+        },
 
-     'Razer Ornata Chroma': {
+    'Razer Ornata Chroma': {
         'esc': (0, 1),
         'f1': (0, 3),
         'f2': (0, 4),
@@ -209,9 +210,10 @@ layouts = \
         'down': (5, 16),
         'right': (5, 17),
         'num_0': (5, 19),
-        'num_dot': (5, 20)},
+        'num_dot': (5, 20)
+        },
 
-     'Razer BlackWidow Chroma': {
+    'Razer BlackWidow Chroma': {
         'esc': (0, 1),
         'f1': (0, 3),
         'f2': (0, 4),
@@ -321,9 +323,10 @@ layouts = \
         'down': (5, 16),
         'right': (5, 17),
         'num_0': (5, 19),
-        'num_dot': (5, 20)},
+        'num_dot': (5, 20)
+        },
 
-     'Razer BlackWidow Ultimate 2016': {
+    'Razer BlackWidow Ultimate 2016': {
         'esc': (0, 1),
         'f1': (0, 3),
         'f2': (0, 4),
@@ -427,8 +430,10 @@ layouts = \
         'down': (5, 16),
         'right': (5, 17),
         'num_0': (5, 19),
-        'num_dot': (5, 20)},
-     'Razer Blade Stealth (Late 2016)': {
+        'num_dot': (5, 20)
+        },
+     
+    'Razer Blade Stealth (Late 2016)': {
         'esc': (0, 1),
         'f1': (0, 2),
         'f2': (0, 3),
@@ -509,5 +514,5 @@ layouts = \
         'up': (5, 13),
         'down': (5, 14),
         'right': (5, 15)
-    }
+        },
     }
