@@ -15,7 +15,7 @@ print()
 device_manager.sync_effects = False
 
 
-# Set random colors for each zone of each device
+# loop through devices and their key layouts
 for device in device_manager.devices:
     dict = {}
     rows, cols = device.fx.advanced.rows, device.fx.advanced.cols
