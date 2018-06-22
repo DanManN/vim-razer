@@ -17,18 +17,26 @@ device_manager.sync_effects = False
 
 # loop through devices and their key layouts
 for device in device_manager.devices:
-    dict = {}
+    dic = {}
     rows, cols = device.fx.advanced.rows, device.fx.advanced.cols
     print(str(rows) + ", " + str(cols))
     for row in range(rows):
         for col in range(cols):
             print("row: " + str(row) + " col: " + str(col))
-            device.fx.advanced.matrix[row, col] = (0, 255, 0)
+            print(device.fx.advanced.matrix[row, col])
+            if device.capabilities['lighting']:
+                device.fx.advanced.matrix[row, col] = (0, 255, 0)
+            else:
+                device.fx.advanced.matrix[row, col] = 255
             device.fx.advanced.draw()
             name = input("...")
             if (name != "no"):
-                dict[name] = (row, col)
-            device.fx.advanced.matrix[row, col] = (0, 0, 0)
+                dic[name] = (row, col)
+            if device.capabilities['lighting']:
+                device.fx.advanced.matrix[row, col] = (0, 0, 0)
+            else:
+                device.fx.advanced.matrix[row, col] = 0
 
     print(device.name + ":")
-    pprint(dict)
+    pprint(device.capabilities)
+    pprint(dic)
