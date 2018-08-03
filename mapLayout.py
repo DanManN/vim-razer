@@ -24,7 +24,7 @@ for device in device_manager.devices:
         for col in range(cols):
             print("row: " + str(row) + " col: " + str(col))
             print(device.fx.advanced.matrix[row, col])
-            if device.capabilities['lighting']:
+            if device.name != 'Razer Ornata':
                 device.fx.advanced.matrix[row, col] = (0, 255, 0)
             else:
                 device.fx.advanced.matrix[row, col] = 255
