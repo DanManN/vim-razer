@@ -32,7 +32,7 @@ for device in device_manager.devices:
             name = input("...")
             if (name != "no"):
                 dic[name] = (row, col)
-            if device.capabilities['lighting']:
+            if device.name != 'Razer Ornata':
                 device.fx.advanced.matrix[row, col] = (0, 0, 0)
             else:
                 device.fx.advanced.matrix[row, col] = 0
