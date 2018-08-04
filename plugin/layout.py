@@ -432,7 +432,7 @@ layouts = \
         'num_0': (5, 19),
         'num_dot': (5, 20)
         },
-     
+
     'Razer Blade Stealth (Late 2016)': {
         'esc': (0, 1),
         'f1': (0, 2),

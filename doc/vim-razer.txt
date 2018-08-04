@@ -18,7 +18,7 @@ Makes RGB Razer keyboards change key colors to complement what you do in vim.
 Must have vim built with +python3 option and must have razer-drivers installed.
 Note: certain vim versions with both +python3 and +python (aka python2)
 features enabled might not work either. To get around this either wait for
-vim update to fix the issue, let go of python2 for vim, or port this plugin to neovim. 
+vim update to fix the issue, let go of python2 for vim, or port this plugin to neovim.
 
 3. Usage                                                      *vim-razer-usage*
 
