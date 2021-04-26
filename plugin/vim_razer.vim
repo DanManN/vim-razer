@@ -113,6 +113,7 @@ function! SetKeyboardColorMacroSelect()
 	" macro select: white and red
 	python3 sys.argv = ["mode_colors.py", "macro"]
 	execute 'py3file ' . s:updateColors
+	return ""
 endfunction
 
 function! ResetKeyboardColor()
