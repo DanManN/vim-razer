@@ -28,6 +28,8 @@ try:
 	device_manager = DeviceManager()
 	keyboard = None
 
+
+
 	# get the keyboard
 	for device in device_manager.devices:
 		if (device.type == "keyboard"):
@@ -42,7 +44,7 @@ try:
 		if keyboard.name in layouts:
 			keylayout = layouts[keyboard.name]
 		else:
-			#print("vim-razer: error: no layout found for " + keyboard.name)
+			#print("vim razer: error: no layout found for " + keyboard.name)
 			keylayout = layouts["default"]
 
 		vim.command('let vim_razer_can_run = 1')
@@ -74,15 +76,24 @@ let s:updateColors = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/mode_co
 function! ResetProfile()
 	python3 << EOF
 try:
-	from polychromatic.preferences import get_device_state
-	from polychromatic import preferences
-	from polychromatic.common import set_lighting_effect
-	effect = get_device_state(serial,"main","effect")
-	params = get_device_state(serial,"main","effect_params")
-	set_lighting_effect(preferences, keyboard, "main", effect, params)
-except ImportError:
-	#print("vim-razer: polychromatic not installed")
-	pass
+	from polychromatic import middleman
+	from polychromatic import middleman as mm
+	from polychromatic.middleman import common as common
+	mdbg = common.Debugging()
+	def dummy(s):
+		return s
+	mymiddle = mm.Middleman(mdbg,common,dummy)
+	mymiddle.init()
+	#print('in reset')
+	#print(first_state)
+	middle_device = mymiddle.get_device_by_serial(keyboard.serial)
+	mm = middle_device
+	first_state = mymiddle._get_current_device_option(middle_device)
+	mymiddle.set_device_state(mm['backend'],mm['uid'],mm['serial'],None,first_state[0],first_state[1],first_state[2])
+
+except Exception as E:
+	print(E)
+	print("vim-razer: polychromatic not installed")
 EOF
 endfunction
 
@@ -102,7 +113,6 @@ endfunction
 
 function! SetKeyboardColorVisual()
 	set updatetime=0
-
 	" Visual mode: orange
 	python3 sys.argv = ["mode_colors.py", "visual"]
 	execute 'py3file ' . s:updateColors
